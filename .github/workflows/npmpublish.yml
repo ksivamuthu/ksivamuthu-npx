@@ -40,7 +40,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-          registry-url: "@ksivamuthu:registry=https://npm.pkg.github.com"
+          registry-url: https://npm.pkg.github.com/
+          scope: ${GITHUB_ACTOR}
+      - run: echo registry=https://npm.pkg.github.com/${GITHUB_ACTOR} >> .npmrc          
       - run: npm ci
       - run: npm publish
         env:
